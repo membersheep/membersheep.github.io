@@ -1,283 +1,334 @@
 <!DOCTYPE html>
-<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
-   <!--- Basic Page Needs
-   ================================================== -->
-   <meta charset="utf-8">
-   <title>Alessandro Maroso</title>
-   <meta name="description" content="Alessandro's personal page">
-   <meta name="author" content="Alessandro Maroso">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alessandro Maroso</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-   <!-- Mobile Specific Metas
-   ================================================== -->
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    background: #0d0d0d;
+    color: #e8e8e0;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 48px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-	<!-- CSS
-   ================================================== -->
-   <link rel="stylesheet" href="css/default.css">
-   <link rel="stylesheet" href="css/layout.css">
-   <link rel="stylesheet" href="css/media-queries.css">
-   <link rel="stylesheet" href="css/magnific-popup.css">
+  a { color: #7fff7f; text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-   <!-- Script
-   ================================================== -->
-   <script src="js/modernizr.js"></script>
+  /* ── HEADER ── */
+  .header-top {
+    border: 1px solid #444;
+    padding: 24px;
+    margin-bottom: 32px;
+    position: relative;
+  }
 
-   <!-- Favicons
-	 ================================================== -->
-   <link rel="shortcut icon" href="favicon.png" >
+  .header-top::before {
+    content: '/* curriculum vitae */';
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: #0d0d0d;
+    padding: 0 8px;
+    font-size: 12px;
+    color: #555;
+  }
+
+  .name {
+    font-size: 28px;
+    font-weight: bold;
+    color: #7fff7f;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .title-line {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .contact-line {
+    font-size: 12px;
+    color: #aaa;
+    border-top: 1px solid #333;
+    padding-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .contact-line span::before { content: '> '; color: #555; }
+
+  /* ── SUMMARY ── */
+  .summary {
+    border-left: 2px solid #7fff7f;
+    padding: 0 0 0 16px;
+    color: #bbb;
+    font-size: 13px;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+
+  /* ── SECTION ── */
+  .section-header {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-header::before { content: '##'; color: #7fff7f; }
+  .section-header::after { content: ''; flex: 1; border-top: 1px solid #222; }
+
+  section { margin-bottom: 40px; }
+
+  /* ── JOB ── */
+  .job { margin-bottom: 24px; }
+
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .job-role {
+    font-weight: bold;
+    color: #e8e8e0;
+    font-size: 14px;
+  }
+
+  .job-role::before { content: '$ '; color: #7fff7f; }
+
+  .job-company { color: #7fff7f; font-size: 13px; }
+
+  .job-period {
+    font-size: 12px;
+    color: #555;
+    white-space: nowrap;
+  }
+
+  .job-bullets {
+    list-style: none;
+    padding-left: 16px;
+  }
+
+  .job-bullets li {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 3px;
+  }
+
+  .job-bullets li::before { content: '- '; color: #555; }
+
+  hr.rule {
+    border: none;
+    border-top: 1px dashed #222;
+    margin: 16px 0;
+  }
+
+  /* ── SKILLS ── */
+  .skills-block { margin-bottom: 12px; }
+
+  .skill-key {
+    color: #7fff7f;
+    font-size: 12px;
+  }
+
+  .skill-key::after { content: ':'; }
+
+  .skill-val {
+    color: #999;
+    font-size: 13px;
+    padding-left: 16px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .edu-degree { color: #e8e8e0; }
+  .edu-school { color: #666; font-size: 12px; }
+  .edu-year { color: #555; font-size: 12px; white-space: nowrap; }
+
+  /* ── LANGUAGES ── */
+  .lang-line { font-size: 13px; color: #999; }
+  .lang-line span { color: #7fff7f; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 48px;
+    font-size: 11px;
+    color: #333;
+    text-align: center;
+  }
+
+  @media print {
+    body { background: white; color: black; padding: 24px; }
+    .name { color: black; }
+    .section-header::before, .job-role::before, .skill-key, .job-company, a { color: #1a1a1a; }
+    .contact-line, .title-line, .job-period, .edu-year { color: #555; }
+    .summary, .job-bullets li, .skill-val, .lang-line { color: #333; }
+    .header-top, .section-header::after { border-color: #ccc; }
+  }
+</style>
 </head>
-
 <body>
 
-   <!-- Header
-   ================================================== -->
-   <header id="home">
-      <nav id="nav-wrap">
-        <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
-        <ul id="nav" class="nav">
-          <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-          <li><a class="smoothscroll" href="#about">About</a></li>
-          <li><a class="smoothscroll" href="#resume">Resume</a></li>
-          <li><a class="smoothscroll" href="#contact">Contacts</a></li>
-            <!--<li><a class="smoothscroll" href="#portfolio">Works</a></li>-->
-            <!--<li><a class="smoothscroll" href="#testimonials">Testimonials</a></li>-->
-        </ul>
-      </nav>
-      <div class="row banner">
-        <div class="banner-text">
-          <h1 class="responsive-headline">Alessandro Maroso</h1>
-          <h3>I'm an italian <span>computer engineer</span>, focused on <span>mobile software development</span>.
-              Starting from a solid background in iOS app development with high graphic content
-              I'm expanding my knowledge towards Android development and multiplatform solutions.
-              Start scrolling </a>and learn more<a class="smoothscroll" href="#about"> about me</a>.
-          </h3>
-          <hr />
-          <ul class="social">
-            <li><a href="https://github.com/membersheep/"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/alessandromaroso"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://twitter.com/membersheep"><i class="fa fa-twitter"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      <p class="scrolldown">
-        <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
-      </p>
-   </header>
+<div class="header-top">
+  <div class="name">Alessandro Maroso</div>
+  <div class="title-line">senior ios &amp; mobile developer</div>
+  <div class="contact-line">
+    <span>Padua, Italy</span>
+    <span>+39 339 622 4032</span>
+    <span><a href="mailto:alessandro.maroso@gmail.com">alessandro.maroso@gmail.com</a></span>
+    <span><a href="https://github.com/membersheep">github.com/membersheep</a></span>
+  </div>
+</div>
 
-   <!-- About Section
-   ================================================== -->
-   <section id="about">
-     <div class="row">
-       <div class="three columns">
-         <img class="profile-pic"  src="images/profilepic.jpg" alt="" />
-       </div>
-       <div class="nine columns main-col">
-         <h2>About Me</h2>
-         <p>
-           I was born in 1988 in Bassano del Grappa but now I live and work in Padua.
-           I've always lived in Italy but i travelled all around Europe, i love travelling!
-           I'm passionate about arts (especially music), technology and everything that tickles my curiosity and my imagination but i love the most when these things mix together.
-         </p>
-         <div class="row">
-           <div class="columns contact-details">
-             <h2>Contact Details</h2>
-             <p class="address">
-               <span>Alessandro Maroso</span><br>
-               <span>Via Lucindo Faggin 26 </span><br>
-               <span>Padova, PD, 35135, Italy</span><br>
-               <span>alessandro.maroso at gmail.com</span>
-					   </p>
-           </div>
-           <div class="columns download">
-             <p>
-               <a href="downloads/amaroso-cv.pdf" download class="button"><i class="fa fa-download"></i>Download Full Resume</a>
-             </p>
-           </div>
-         </div>
-       </div>
-     </div>
-   </section>
+<p class="summary">Results-driven iOS engineer with 10+ years delivering mission-critical mobile applications. Deep expertise in Swift and Objective-C, with a proven track record leading architecture decisions, mentoring teams, and shipping high-quality products across iOS, hybrid, and cross-platform environments.</p>
 
-   <!-- Resume Section
-   ================================================== -->
-   <section id="resume">
-      <div class="row education">
-        <div class="three columns header-col">
-          <h1><span>Education</span></h1>
-        </div>
-        <div class="nine columns main-col">
-          <div class="row item">
-            <div class="twelve columns">
-              <h3>Università degli Studi di Padova, Padua (Italy)</h3>
-              <p class="info">Master’s Degree, Computer engineering <span>&bull;</span> <em class="date">2010-2012</em></p>
-              <p>
-                My stage consisted in developing an Objective-C wrapper for Box2d physics library as an extension for Sparrow Game Framework.
-              </p>
-            </div>
-          </div>
-          <div class="row item">
-            <div class="twelve columns">
-              <h3>Università degli Studi di Padova, Padua (Italy)</h3>
-              <p class="info">Bachelor’s Degree, Computer engineering <span>&bull;</span> <em class="date">2007-2010</em></p>
-              <p>
-                My stage consisted in designing a web portal for centralized social networks accounts management.
-              </p>
-            </div>
-          </div>
-          <div class="row item">
-            <div class="twelve columns">
-              <h3>Liceo Scientifico Jacopo Da Ponte, Bassano del Grappa (Italy)</h3>
-              <p class="info">Scientific high school degree <span>&bull;</span> <em class="date">2002-2007</em></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row work">
-        <div class="three columns header-col">
-          <h1><span>Work</span></h1>
-        </div>
-        <div class="nine columns main-col">
-          <div class="row item">
-            <div class="twelve columns">
-              <h3>Rawfish SRL</h3>
-              <p class="info">iOS Software Developer <span>&bull;</span> <em class="date">January 2017 - Present</em></p>
-              <p>
-                Development, maintenance and deployment of iOS apps written in Objective-C and Swift.
-              </p>
-            </div>
-          </div>
-          <div class="row item">
-            <div class="twelve columns">
-              <h3>IKS</h3>
-              <p class="info">Mobile Software Developer <span>&bull;</span> <em class="date">May 2015 - January 2017</em></p>
-              <p>
-                Development, maintenance and deployment of iOS apps written in Objective-C and Swift.
-                Development and maintenance of web apps using AngularJS and several different backend frameworks.
-              </p>
-            </div>
-          </div>
-          <div class="row item">
-            <div class="twelve columns">
-              <h3>Ware's Me</h3>
-              <p class="info">iOS Software Developer <span>&bull;</span> <em class="date">February 2013 - May 2015</em></p>
-              <p>
-                Development, maintenance and deployment of iOS apps and games using Sparrow game framework.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row skill">
-        <div class="three columns header-col">
-          <h1><span>Languages</span></h1>
-        </div>
-        <div class="nine columns main-col">
-          <p>
-          </p>
-          <div class="bars">
-            <ul class="skills">
-              <li><span class="bar-expand swift"></span><em>Swift</em></li>
-              <li><span class="bar-expand objectivec"></span><em>Objective-C</em></li>
-              <li><span class="bar-expand javascript"></span><em>JavaScript</em></li>
-						  <li><span class="bar-expand java"></span><em>Java</em></li>
-              <li><span class="bar-expand php"></span><em>PHP</em></li>
-              <li><span class="bar-expand csharp"></span><em>C#</em></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+<section>
+  <div class="section-header">Experience</div>
 
-   <!-- Contact Section
-   ================================================== -->
-   <section id="contact">
-     <div class="row section-head">
-       <div class="two columns">
-         <img src="images/telegram.png"/>
-         <h1><span>Get In Touch.</span></h1>
-       </div>
-       <div class="ten columns">
-         <p class="lead">
-           Feel free to contact me anytime. I will receive messages sent through this form directly on my telegram account, make sure to append some info to contact you back.
-         </p>
-       </div>
-     </div>
-     <div class="row">
-       <div class="eight columns">
-         <form action="" method="post" id="contactForm" name="contactForm">
-           <fieldset>
-             <div>
-               <label for="contactName">Name</label>
-               <input type="text" value="" size="35" id="contactName" name="contactName">
-             </div>
-             <div>
-               <label for="contactEmail">Email</label>
-               <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
-             </div>
-             <div>
-               <label for="contactMessage">Message</label>
-               <textarea cols="50" rows="15" id="contactMessage" name="contactMessage"></textarea>
-             </div>
-             <div>
-               <label></label>
-               <input type="submit" value="Submit">
-               <span id="image-loader">
-                 <img alt="" src="images/loader.gif">
-               </span>
-             </div>
-           </fieldset>
-         </form>
-         <div id="message-warning">
-           Error
-         </div>
-         <div id="message-success">
-           <i class="fa fa-check"></i>Your message was sent, thank you!<br>
-         </div>
-       </div>
-       <aside class="four columns footer-widgets">
-         <div class="widget widget_contact">
-           <h4>Address and mail</h4>
-           <p class="address">
-             Alessandro Maroso<br>
-             Via Lucindo Faggin 26 <br>
-             Padova, PD, 35135, Italy<br>
-             alessandro.maroso at gmail.com
-           </p>
-         </div>
-       </aside>
-     </div>
-   </section>
-
-   <!-- Footer
-   ================================================== -->
-   <footer>
-      <div class="row">
-        <div class="twelve columns">
-          <ul class="copyright">
-            <li>&copy; Copyright 2014 CeeVee</li>
-            <li>Design by <a title="Styleshout" href="http://www.styleshout.com/">Styleshout</a></li>
-          </ul>
-        </div>
-        <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+  <div class="job">
+    <div class="job-head">
+      <div>
+        <div class="job-role">Lead iOS Developer <span class="job-company">@ Rawfish srl</span></div>
       </div>
-   </footer>
-   <!-- Footer End-->
+      <div class="job-period">Jan 2017 – Present</div>
+    </div>
+    <ul class="job-bullets">
+      <li>Lead end-to-end development, maintenance, and App Store deployment of mission-critical iOS apps in Swift and Objective-C.</li>
+      <li>Designed and championed a company-wide iOS architecture framework, raising code quality across all projects.</li>
+      <li>Mentored junior developers, establishing engineering best practices and code review culture.</li>
+      <li>Developed Kotlin Multiplatform libraries for Bluetooth and network management.</li>
+      <li>Collaborated on requirements analysis and technical specification with product stakeholders.</li>
+    </ul>
+  </div>
+  <hr class="rule">
 
-   <!-- Java Script
-   ================================================== -->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-   <script src="js/jquery.flexslider.js"></script>
-   <script src="js/waypoints.js"></script>
-   <script src="js/jquery.fittext.js"></script>
-   <script src="js/magnific-popup.js"></script>
-   <script src="js/init.js"></script>
-   <script src="js/telegram.js"></script>
+  <div class="job">
+    <div class="job-head">
+      <div>
+        <div class="job-role">Software Developer <span class="job-company">@ IKS srl</span></div>
+      </div>
+      <div class="job-period">May 2015 – Jan 2017</div>
+    </div>
+    <ul class="job-bullets">
+      <li>Built and maintained iOS applications in Swift and Objective-C for production client deployments.</li>
+      <li>Developed cross-platform hybrid apps using React Native and Ionic (JS / TypeScript).</li>
+      <li>Contributed to backend services in Node.js and PHP.</li>
+    </ul>
+  </div>
+  <hr class="rule">
+
+  <div class="job">
+    <div class="job-head">
+      <div>
+        <div class="job-role">Software Developer <span class="job-company">@ Ware's Me srl</span></div>
+      </div>
+      <div class="job-period">Feb 2013 – May 2015</div>
+    </div>
+    <ul class="job-bullets">
+      <li>Delivered iOS games and apps using the Sparrow framework, from prototype to App Store release.</li>
+    </ul>
+  </div>
+  <hr class="rule">
+
+  <div class="job">
+    <div class="job-head">
+      <div>
+        <div class="job-role">iOS Developer Intern <span class="job-company">@ Ware's Me srl</span></div>
+      </div>
+      <div class="job-period">Jun – Dec 2012</div>
+    </div>
+    <ul class="job-bullets">
+      <li>Engineered an Objective-C wrapper for the Box2D physics engine as a Sparrow framework extension.</li>
+    </ul>
+  </div>
+  <hr class="rule">
+
+  <div class="job">
+    <div class="job-head">
+      <div>
+        <div class="job-role">Web Developer Intern <span class="job-company">@ Ideogroup srl</span></div>
+      </div>
+      <div class="job-period">Jun – Sep 2010</div>
+    </div>
+    <ul class="job-bullets">
+      <li>Designed and prototyped a web portal for unified social network account management.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="section-header">Skills</div>
+
+  <div class="skills-block">
+    <div class="skill-key">languages</div>
+    <div class="skill-val">Swift, Objective-C, Kotlin, JavaScript, TypeScript, Java, C/C++, PHP</div>
+  </div>
+  <div class="skills-block">
+    <div class="skill-key">ios &amp; mobile</div>
+    <div class="skill-val">UIKit, SwiftUI, KMP, React Native, Ionic, Unity, Cocos2D</div>
+  </div>
+  <div class="skills-block">
+    <div class="skill-key">architecture</div>
+    <div class="skill-val">MVC, MVVM, VIPER, RxSwift, RxJS, TDD, BDD</div>
+  </div>
+  <div class="skills-block">
+    <div class="skill-key">backend &amp; tools</div>
+    <div class="skill-val">Node.js, Express, Hapi, Spring, Symfony2, Git</div>
+  </div>
+</section>
+
+<section>
+  <div class="section-header">Education</div>
+
+  <div class="edu-item">
+    <div>
+      <div class="edu-degree">MSc Computer Engineering</div>
+      <div class="edu-school">Università degli Studi di Padova</div>
+    </div>
+    <div class="edu-year">2010–2012</div>
+  </div>
+  <div class="edu-item">
+    <div>
+      <div class="edu-degree">BSc Computer Engineering</div>
+      <div class="edu-school">Università degli Studi di Padova</div>
+    </div>
+    <div class="edu-year">2007–2010</div>
+  </div>
+</section>
+
+<section>
+  <div class="section-header">Languages</div>
+  <div class="lang-line"><span>Italian</span> — native &nbsp;|&nbsp; <span>English</span> — professional working proficiency</div>
+</section>
+
+<div class="footer">// end of file</div>
+
 </body>
-
 </html>
